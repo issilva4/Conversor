@@ -28,11 +28,14 @@ def convertbfrac(fracionario, base):
 
 def dec_to_fracionario(decimal, base):
 	
-	pint, pfrac = decimal.split(",")
-	pint = convertb(int(pint), base)
-	pfrac = convertbfrac(int(pfrac)*1.0/(10**len(pfrac)) + 0, base)
-	
-	aux = pint + [","] + pfrac
+	if decimal.find(",") >= 0:
+		pint, pfrac = decimal.split(",")
+		pint = convertb(int(pint), base)
+		pfrac = convertbfrac(int(pfrac)*1.0/(10**len(pfrac)) + 0, base)
+		
+		aux = pint + [","] + pfrac
+	else:
+		aux = convertb(int(decimal), base)
 	
 	s = ""
 	for x in aux:
